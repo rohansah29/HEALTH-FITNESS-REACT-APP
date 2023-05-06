@@ -2,7 +2,7 @@ import React from 'react'
 import "../styles/pricing.css"
 
 const Pricing = () => {
-  return <section>
+  return <section id='membership'>
     <div className="container">
     <div className="pricing__top">
         <h2 className="section__title">Premium <span className="highlights">Subscription</span> plan</h2>
@@ -10,7 +10,7 @@ const Pricing = () => {
     </div>
 
     <div className="pricing__wrapper">
-        <div className="pricing__item">
+        <div className="pricing__item" data-aos-duration="1500" data-aos="fade-up">
             <div className="pricing__card-top">
                 <h2 className=''>Regular Member</h2>
                 <h2 className="pricing">$9.99 <span>/month</span></h2>
@@ -29,7 +29,7 @@ const Pricing = () => {
             </div>
         </div>
 
-        <div className="pricing__item pricing__item-02">
+        <div className="pricing__item pricing__item-02" data-aos-duration="1500" data-aos="fade-up">
             <div className="pricing__card-top">
                 <h2 className=''>Gold Member</h2>
                 <h2 className="pricing">$79.99 <span>/year</span></h2>
@@ -49,7 +49,7 @@ const Pricing = () => {
             </div>
         </div>
 
-        <div className="pricing__item">
+        <div className="pricing__item" data-aos-duration="1500" data-aos="fade-up">
             <div className="pricing__card-top">
                 <h2 className=''>Standard Member</h2>
                 <h2 className="pricing">$49.99 <span>/year</span></h2>

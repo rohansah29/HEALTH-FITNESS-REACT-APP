@@ -12,7 +12,7 @@ const Exercise = () => {
             <p>Exercise is essential for maintaining a healthy body and mind,<br/> and can improve quality of life in numerous ways.</p>
         </div>
         <div className="exercise__wrapper">
-            <div className="exercise__item">
+            <div className="exercise__item" data-aos-duration="1500" data-aos="zoom-in">
                 <span className="exercise__icon"><img src={lunges} alt="err" /></span>
 
                 <div className="exercise__content">
@@ -21,7 +21,7 @@ const Exercise = () => {
                 </div>
             </div>
 
-            <div className="exercise__item">
+            <div className="exercise__item" data-aos-duration="1500" data-aos="zoom-in">
                 <span className="exercise__icon"><img src={yoga} alt="err" /></span>
 
                 <div className="exercise__content">
@@ -31,7 +31,7 @@ const Exercise = () => {
             </div>
 
 
-            <div className="exercise__item">
+            <div className="exercise__item" data-aos-duration="1500" data-aos="zoom-in">
                 <span className="exercise__icon"><img src={ex} alt="err" /></span>
 
                 <div className="exercise__content">

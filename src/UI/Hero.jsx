@@ -3,14 +3,14 @@ import heroImg from "../assets/img/model1-removebg-preview.png"
 import "../styles/hero.css";
 
 const Hero = () => {
-  return <section>
+  return <section id='#'>
     <div className="container">
         <div className="hero__wrapper">
             <div className="hero__content">
-                <h2 className='section__title'>Exercise is the key to a <span className="highlights">Healthy</span> Lifestyle</h2>
-                <p>Regular exercise is a crucial component of a healthy lifestyle.<br/>It has numerous benefits for physical and mental health, including reducing the risk of chronic diseases,improving cardiovascular function,<br/>  enhancing mood, reducing stress, and promoting better sleep.</p>
+                <h2 className='section__title' data-aos-duration="1000" data-aos="fade-up">Exercise is the key to a <span className="highlights">Healthy</span> Lifestyle</h2>
+                <p data-aos-duration="1100" data-aos="fade-up" data-aos-delay="100">Regular exercise is a crucial component of a healthy lifestyle.<br/>It has numerous benefits for physical and mental health, including reducing the risk of chronic diseases,improving cardiovascular function,<br/>  enhancing mood, reducing stress, and promoting better sleep.</p>
 
-                <div className="hero__btns">
+                <div className="hero__btns" data-aos-duration="1200" data-aos="fade-up" data-aos-delay="200">
                     <button className='register__btn'>Get Started</button>
                     <button className='watch_btn'><span><i class="ri-play-fill"></i></span>Watch Video</button>
                 </div>
@@ -28,13 +28,13 @@ const Hero = () => {
                         </div>
                     </div>
 
-                    <div className="heart__rate">
+                    <div className="heart__rate" data-aos-duration="1100" data-aos="fade-right">
                         <h5>Heart Rate</h5>
                         <span><i class="ri-heart-pulse-fill"></i></span>
                         <h6>100 BPM</h6>
                     </div>
 
-                    <div className="gym__location">
+                    <div className="gym__location" data-aos-duration="1100" data-aos="fade-up">
                         <span><i class="ri-map-pin-2-fill"></i></span>
                         <h5>Find our gym centers near you</h5>
                     </div>
@@ -43,6 +43,8 @@ const Hero = () => {
         </div>
     </div>
   </section>
+  
 }
+
 
 export default Hero

@@ -80,3 +80,7 @@ font-weight: 500;
 .pricing__item-02 .pricing__card-top h2 span{
     color: #d3cef2;
 }
+
+.pricing__item-02 .services ul li span i{
+color: var(--primary-color);
+}
