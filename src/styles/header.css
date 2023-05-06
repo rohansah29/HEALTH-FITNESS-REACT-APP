@@ -38,13 +38,13 @@
     align-items: center;
     column-gap: 2.5rem;
 }
-.nav__item a{
+.nav__item {
     color:var(--heading-color);
     font-weight: 600 !important;
     font-size: 1.1rem;
 }
 
-.nav__item a:hover{
+.nav__item:hover{
     color: var(--primary-color);
 }
 .nav__right{

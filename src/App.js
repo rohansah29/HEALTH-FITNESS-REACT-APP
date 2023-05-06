@@ -1,17 +1,22 @@
 import "./App.css";
-import Exercise from "./UI/Exercise";
-import Hero from "./UI/Hero";
-import Pricing from "./UI/Pricing";
-import Start from "./UI/Start";
+import { useEffect } from "react";
+import Aos from "aos"
+import Footer from "./UI/Footer";
 import Header from "./component/Header";
+import AllRoutes from "./component/AllRoutes";
+import Login from "./UI/Login";
 
 function App() {
+
+  useEffect(()=>{
+    Aos.init();
+  },[])
+
   return <>
   <Header/>
-  <Hero/>
-  <Exercise/>
-  <Start/>
-  <Pricing/>
+  <AllRoutes/>
+  <Footer/>
+  {/* <Login/> */}
   </>;
 }
 
