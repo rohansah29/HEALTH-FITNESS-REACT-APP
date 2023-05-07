@@ -1,10 +1,11 @@
 import "./App.css";
-import { useEffect } from "react";
+import { useEffect,useContext } from "react";
 import Aos from "aos"
 import Footer from "./UI/Footer";
 import Header from "./component/Header";
 import AllRoutes from "./component/AllRoutes";
-import Login from "./UI/Login";
+import Login from "./UI/LogIn/Login";
+
 
 function App() {
 

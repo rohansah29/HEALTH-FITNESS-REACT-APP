@@ -1,7 +1,9 @@
-import React,{useEffect, useRef} from "react";
+import React,{useEffect, useRef,useContext} from "react";
 import "../styles/header.css";
 import logo from "../assets/img/Health___Fitness.png";
 import { NavLink } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+import { AuthContext } from "./AuthContextProvider";
 
 const nav__links = [
   {
@@ -22,7 +24,35 @@ const nav__links = [
   },
 ];
 
+
 const Header = () => {
+  const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
+
+  const {filter,setFilter}=useContext(AuthContext);
+  
+
+  const verifyUser=()=>{
+    let res=fetch(`https://healthandfitness.onrender.com/data`).then((res)=>{
+      return res.json();
+    }).then((data)=>{
+      let filteredData=data.filter((el)=>el.user==user.name);
+      // console.log(filteredData);
+      setFilter(filteredData);
+      if(filteredData.length<1){
+        let obj={
+          "user": user.name,
+          "userdata": []
+        }
+        let post=fetch(`https://healthandfitness.onrender.com/data`,{
+          method:"POST",
+          headers:{
+            "Content-Type":"application/json",
+          },
+          body:JSON.stringify(obj) 
+        })
+      }
+    })
+  }
 
     const headerRef =useRef(null);
     const headerFunc=()=>{
@@ -37,6 +67,19 @@ const Header = () => {
 
         return()=>window.removeEventListener("scroll",headerFunc);
     },[])
+
+    useEffect(()=>{
+      verifyUser();
+    })
+
+    const handleLogOut=()=>{
+      logout({ returnTo: window.location.origin })
+    }
+
+    const handleLogIn=()=>{
+      loginWithRedirect();
+    }
+
   return (
     <header className="header" ref={headerRef}>
       <div className="container">
@@ -58,7 +101,11 @@ const Header = () => {
             </ul>
           </div>
           <div className="nav__right">
-            <button className="register__btn">Register</button>
+          {isAuthenticated && (
+              <p className="nav__item"> {user.name} </p>
+          )}
+            {isAuthenticated?<button className="register__btn" onClick={handleLogOut}>Log Out</button>:
+            <button className="register__btn" onClick={handleLogIn}>Log In</button>}
             <span className="mobile__menu">
               <i class="ri-menu-line"></i>
             </span>
