@@ -5,8 +5,8 @@
 -----
 ### For Tracking your Fitness* 
 Project: Health & Fitness website with complete authentication made using React.js
-Original-Design: https://www.behance.net/gallery/78953297/Health-Fitness-Mobile-App-UI-UX-Kit?tracking_source=search_projects%7Chealth+fitness
-Health & Fitness-Website:https://healthfitness1reactapp.netlify.app/
+Original-Design: (https://www.behance.net/gallery/78953297/Health-Fitness-Mobile-App-UI-UX-Kit?tracking_source=search_projects%7Chealth+fitness)
+Health & Fitness-Website:(https://healthfitness1reactapp.netlify.app/)
 ## Landing Page
 ![Home_page](https://raw.githubusercontent.com/rohansah29/polite-sheep-7319/main/src/assets/img/Home_page.png)
 ## Track your fitness page
