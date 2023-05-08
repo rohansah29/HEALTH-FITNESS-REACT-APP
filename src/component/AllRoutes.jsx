@@ -11,9 +11,10 @@ import { AuthContext } from './AuthContextProvider'
 import Swal from 'sweetalert2';
 import { useAuth0 } from "@auth0/auth0-react";
 import PrivateRoute from './PrivateRoute';
+import Login from '../UI/LogIn/Login';
 
 const AllRoutes = () => {
-  const {isAuth} = useContext(AuthContext);
+  const {loginWithRedirect, isAuthenticated,} = useAuth0();
   
   return (
     <Routes>
@@ -21,8 +22,7 @@ const AllRoutes = () => {
       <Route path="/programs" element={<Testimonials />} />  
       <Route path="/membership" element={<Pricing />} />  
       <Route path="/track" element={
-        
-          <Track />
+        isAuthenticated?<Track />:<Login/>
       } />
     </Routes>
   )

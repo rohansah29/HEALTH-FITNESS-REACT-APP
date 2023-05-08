@@ -1,100 +1,193 @@
 import React from "react";
-import { useState } from "react";  
+import { useState, useEffect } from "react";
 import { AuthContext } from "../component/AuthContextProvider";
 import { useContext } from "react";
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
+import "../styles/track.css";
 
 const Track = () => {
-  const[name,setName] = useState("");
-  const[activity,setActivity] = useState("");
-  const[weight,setWeight] = useState("");
-  const[fat,setFat] = useState("");
-  const[bmi,setBMI] = useState("");
-  const [postdate,setPostDate] =useState("");
-  const [data,setData] = useState([]);
+  const [name, setName] = useState("");
+  const [activity, setActivity] = useState("");
+  const [weight, setWeight] = useState("");
+  const [fat, setFat] = useState("");
+  const [bmi, setBMI] = useState("");
+  const [postdate, setPostDate] = useState("");
+  const [data, setData] = useState([]);
+  const [fitData, setFitData] = useState([]);
+  const [btn,setBtn] = useState(false);
 
-  const {filter}=useContext(AuthContext);
+  const { filter } = useContext(AuthContext);
+
+  // const fetchAndRender=()=>{
+  //   fetch(`https://healthandfitness.onrender.com/data/${filter[0].id}`).then((res)=>{
+  //     return res.json();
+  //   }).then((data)=>{setData(data?.userdata)})
+  // }
+
+  // useEffect(()=>{
+  //   fetchAndRender();
+  // },[filter]);
+  const getFitnessData = async () => {
+    let res = await fetch(
+      `https://healthandfitness.onrender.com/data/${filter[0].id}`
+    );
+    let json = await res.json();
+    setFitData(json.userdata);
+    // setData(data?.userdata);
+
+    // console.log(data);
+  };
+
+  useEffect(() => {
+    getFitnessData();
+  }, [fitData, filter]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let obj={
-      workout_name:name,
-      activity:activity,
-      weight:weight,
-      fat:fat,
-      bmi:bmi,
-      date:postdate
-    }
-    setData([...data,obj]);
-    fetch(`https://healthandfitness.onrender.com/data/${filter[0].id}`,{
-          method:"PATCH",
-          headers:{
-            "Content-Type":"application/json"
+
+    let obj = {
+      workout_name: name,
+      activity: activity,
+      weight: weight,
+      fat: fat,
+      bmi: bmi,
+      date: postdate,
+    };
+
+    fetch(`https://healthandfitness.onrender.com/data/${filter[0].id}`)
+      .then((res) => res.json())
+      .then((json) => {
+        let updatedJson = [...json?.userdata, obj];
+        fetch(`https://healthandfitness.onrender.com/data/${filter[0].id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
           },
-          body:JSON.stringify({userdata:data})
-    })
-    Swal.fire({
-      position: 'top-mid',
-      icon: 'success',
-      title: 'Your Data has been Added.',
-      showConfirmButton: false,
-      timer: 1500
-    })
+          body: JSON.stringify({ userdata: updatedJson }),
+        });
+        Swal.fire({
+          position: "top-mid",
+          icon: "success",
+          title: "Your Data has been Added.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      });
   };
+
   // console.log(data);
   return (
     <div className="container">
-      <h1>Your fitness Dashboard</h1>
-      <div>
+      
+      <br/>
+      <h1>
+        Your <span className="highlights">fitness</span> Dashboard
+      </h1>
+      <h2>
+        Add <span className="highlights">Data</span><span><button id="addnotice-btn" onClick={()=>setBtn(!btn)}>{btn?"x":"+"}</button></span>
+      </h2>
+      <div className="model" style={{display:btn?"flex":"none"}}>
+        <div className="formCont">
         <form onSubmit={handleSubmit}>
           <label>
             Workout name :
-            <input type="text" name="name" onChange={(e)=>setName(e.target.value)} />
-          </label>
+            </label>
+            <input
+              type="text"
+              name="name"
+              onChange={(e) => setName(e.target.value)}
+            />
           <br />
+          <br/>
           <label>
             Activity :
-            <select name="type" onChange={(e)=>setActivity(e.target.value)}>
-              <option value="">Select Restaurant Type</option>
-              <option value="cardiovascular_exercise">Cardiovascular exercise</option>
-              <option value="strength_training">Strength training</option>
-              <option value="group_fitness_classes">Group fitness classes</option>
-              <option value="High_intensity_interval_training">High-intensity interval training</option>
-            </select>
           </label>
+            <select name="type" onChange={(e) => setActivity(e.target.value)}>
+              <option value="">Select Restaurant Type</option>
+              <option value="cardiovascular_exercise">
+                Cardiovascular exercise
+              </option>
+              <option value="strength_training">Strength training</option>
+              <option value="group_fitness_classes">
+                Group fitness classes
+              </option>
+              <option value="High_intensity_interval_training">
+                High-intensity interval training
+              </option>
+            </select>
           <br />
+          <br/>
           <label>
             Body Weight :
+            </label>
             <input
               type="number"
               name="Weight"
-              onChange={(e)=>setWeight(e.target.value)}
+              onChange={(e) => setWeight(e.target.value)}
             />
-          </label>
           <br />
+          <br/>
           <label>
             Body Fat :
+            </label>
             <input
               type="number"
               name="body_fat"
-              onChange={(e)=>setFat(e.target.value)}
+              onChange={(e) => setFat(e.target.value)}
             />
-          </label>
           <br />
+          <br/>
           <label>
-            BMI :
+            Heart Rate :
+            </label><br/>
             <input
               type="number"
               name="price_starts_from"
-              onChange={(e)=>setBMI(e.target.value)}
+              onChange={(e) => setBMI(e.target.value)}
             />
-          </label>
           <br />
+          <br/>
           <label>Date: </label>
-          <input type="date" data-testid="date" onChange={(e)=>setPostDate(e.target.value)}></input>
+          <input
+            type="date"
+            data-testid="date"
+            onChange={(e) => setPostDate(e.target.value)}
+          ></input>
           <br />
-          <input type="submit" />
+          <br/>
+          <input id="btn" type="submit" onClick={handleSubmit} />
         </form>
+        </div>
+        
+      </div>
+
+      <div className="table-responsive">
+        <table className="table">
+          <thead className="thead-dark">
+            <tr>
+              <th>Workout Name</th>
+              <th>Activity</th>
+              <th>Body Weight</th>
+              <th>Body Fat %</th>
+              <th>Heart Rate</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {fitData.map((el) => {
+              return (
+                <tr>
+                  <td>{el.workout_name}</td>
+                  <td>{el.activity}</td>
+                  <td>{el.weight} Kg</td>
+                  <td>{el.fat}%</td>
+                  <td>{el.bmi} BPM</td>
+                  <td>{el.date}</td>
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
       </div>
     </div>
   );
