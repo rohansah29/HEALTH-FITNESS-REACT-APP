@@ -28,6 +28,13 @@ In this project i have tried to manipulate dom elements, styling using css and t
 
 For storing user data i used localStorage & JSON-Server.
 
+**Progress:**
+Version 1 completed and hosted
+
+Version 2 Progress: 50%
+<br/>
+![](src/assets/progressbar.png)
+
 ### How to run the Project
 ### Install
 
