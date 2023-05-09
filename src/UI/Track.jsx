@@ -12,9 +12,10 @@ const Track = () => {
   const [fat, setFat] = useState("");
   const [bmi, setBMI] = useState("");
   const [postdate, setPostDate] = useState("");
-  const [data, setData] = useState([]);
+  // const [data, setData] = useState([]);
   const [fitData, setFitData] = useState([]);
   const [btn,setBtn] = useState(false);
+  const [loading,setLoading]=useState(false);
 
   const { filter } = useContext(AuthContext);
 
@@ -32,7 +33,10 @@ const Track = () => {
       `https://healthandfitness.onrender.com/data/${filter[0].id}`
     );
     let json = await res.json();
-    setFitData(json.userdata);
+    let data=json.userdata;
+    data.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+    setFitData(data);
     // setData(data?.userdata);
 
     // console.log(data);
@@ -44,6 +48,8 @@ const Track = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    setLoading(true);
+    alert("It may take some time to show data on Dashboard, so please be patient.");
 
     let obj = {
       workout_name: name,
@@ -65,15 +71,20 @@ const Track = () => {
           },
           body: JSON.stringify({ userdata: updatedJson }),
         });
-        Swal.fire({
-          position: "top-mid",
-          icon: "success",
-          title: "Your Data has been Added.",
-          showConfirmButton: false,
-          timer: 1500,
-        });
       });
+      Swal.fire({
+        position: "top-mid",
+        icon: "success",
+        title: "Your Data has been Added.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      setLoading(false);
   };
+
+  // if(loading){
+  //   <h1>Loading...</h1>
+  // }
 
   // console.log(data);
   return (
