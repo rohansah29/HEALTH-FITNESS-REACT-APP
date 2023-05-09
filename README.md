@@ -8,6 +8,14 @@ Project: Health & Fitness website with complete authentication made using React.
 Original-Design: [HERE!](https://www.behance.net/gallery/78953297/Health-Fitness-Mobile-App-UI-UX-Kit?tracking_source=search_projects%7Chealth+fitness)
 
 Health & Fitness-Website version 1 hosted [HERE!](https://healthfitness1reactapp.netlify.app/)
+
+**Progress:**
+
+Version 1 completed and hosted
+
+Version 2 Progress: 50%
+
+
 ## Landing Page
 ![Home_page](https://raw.githubusercontent.com/rohansah29/polite-sheep-7319/main/src/assets/img/Home_page.png)
 ## Track your fitness page
@@ -27,13 +35,6 @@ In this project i have tried to manipulate dom elements, styling using css and t
 * aos-animation
 
 For storing user data i used localStorage & JSON-Server.
-
-**Progress:**
-Version 1 completed and hosted
-
-Version 2 Progress: 50%
-<br/>
-![](src/assets/progressbar.png)
 
 ### How to run the Project
 ### Install
