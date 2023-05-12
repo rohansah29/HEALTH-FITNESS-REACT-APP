@@ -1,4 +1,4 @@
-import React,{useEffect, useRef,useContext} from "react";
+import React,{useEffect, useRef,useContext, useState} from "react";
 import "../styles/header.css";
 import logo from "../assets/img/Health___Fitness.png";
 import { NavLink } from "react-router-dom";
@@ -29,10 +29,37 @@ const Header = () => {
   const { loginWithRedirect, isAuthenticated, logout, user } = useAuth0();
 
   const {filter,setFilter}=useContext(AuthContext);
-  
+
+  // const[x,setX]=useState("");
+  // console.log(user.name)
+
+  // const verifyUser=()=>{
+  //   fetch(`https://healthandfitness.onrender.com/data`).then((res)=>{
+  //     return res.json();
+  //   }).then((data)=>{
+  //     let filteredData=data.filter((el)=>el.user==user.name);
+  //     console.log(filteredData);
+  //     setFilter(filteredData);
+  //     if(filteredData.length<1){
+  //       let obj={
+  //         "user": user.name,
+  //         "userdata": []
+  //       }
+  //       fetch(`https://healthandfitness.onrender.com/data`,{
+  //         method:"POST",
+  //         headers:{
+  //           "Content-Type":"application/json",
+  //         },
+  //         body:JSON.stringify(obj) 
+  //       })
+  //     }
+
+  //   })
+  // }
 
   const verifyUser=()=>{
-    let res=fetch(`https://healthandfitness.onrender.com/data`).then((res)=>{
+    // console.log(user.name)
+    fetch(`https://healthandfitness.onrender.com/data`).then((res)=>{
       return res.json();
     }).then((data)=>{
       let filteredData=data.filter((el)=>el.user==user.name);
@@ -43,7 +70,7 @@ const Header = () => {
           "user": user.name,
           "userdata": []
         }
-        let post=fetch(`https://healthandfitness.onrender.com/data`,{
+        fetch(`https://healthandfitness.onrender.com/data`,{
           method:"POST",
           headers:{
             "Content-Type":"application/json",
@@ -71,6 +98,10 @@ const Header = () => {
     useEffect(()=>{
       verifyUser();
     })
+
+    // useEffect(()=>{
+    //   verifyUser();
+    // },[setFilter])
 
     const handleLogOut=()=>{
       logout({ returnTo: window.location.origin })

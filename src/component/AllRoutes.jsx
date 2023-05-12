@@ -15,6 +15,7 @@ import Login from '../UI/LogIn/Login';
 
 const AllRoutes = () => {
   const {loginWithRedirect, isAuthenticated,} = useAuth0();
+  // const {filter,setFilter,verifyUser}=useContext(AuthContext);
   
   return (
     <Routes>

@@ -48,8 +48,9 @@ const Track = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(filter);
     setLoading(true);
-    alert("It may take some time to show data on Dashboard, so please be patient.");
+    // alert("It may take some time to show data on Dashboard, so please be patient.");
 
     let obj = {
       workout_name: name,
@@ -78,8 +79,16 @@ const Track = () => {
         title: "Your Data has been Added.",
         showConfirmButton: false,
         timer: 1500,
-      });
-      setLoading(false);
+      }).then(()=>{
+        setLoading(false);
+      setBtn(false);
+      setName("");
+      setActivity("");
+      setWeight("");
+      setFat("");
+      setBMI("");
+      setPostDate("");
+      })
   };
 
   // if(loading){
@@ -106,14 +115,14 @@ const Track = () => {
             <input
               type="text"
               name="name"
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => setName(e.target.value)} required
             />
           <br />
           <br/>
           <label>
             Activity :
           </label>
-            <select name="type" onChange={(e) => setActivity(e.target.value)}>
+            <select name="type" onChange={(e) => setActivity(e.target.value)} required>
               <option value="">Select Restaurant Type</option>
               <option value="cardiovascular_exercise">
                 Cardiovascular exercise
@@ -134,7 +143,7 @@ const Track = () => {
             <input
               type="number"
               name="Weight"
-              onChange={(e) => setWeight(e.target.value)}
+              onChange={(e) => setWeight(e.target.value)} required
             />
           <br />
           <br/>
@@ -144,7 +153,7 @@ const Track = () => {
             <input
               type="number"
               name="body_fat"
-              onChange={(e) => setFat(e.target.value)}
+              onChange={(e) => setFat(e.target.value)} required
             />
           <br />
           <br/>
@@ -154,7 +163,7 @@ const Track = () => {
             <input
               type="number"
               name="price_starts_from"
-              onChange={(e) => setBMI(e.target.value)}
+              onChange={(e) => setBMI(e.target.value)} required
             />
           <br />
           <br/>
@@ -162,8 +171,8 @@ const Track = () => {
           <input
             type="date"
             data-testid="date"
-            onChange={(e) => setPostDate(e.target.value)}
-          ></input>
+            onChange={(e) => setPostDate(e.target.value)} 
+            required></input>
           <br />
           <br/>
           <input id="btn" type="submit" onClick={handleSubmit} />
