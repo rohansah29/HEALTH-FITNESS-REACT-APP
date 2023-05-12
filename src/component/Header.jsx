@@ -30,33 +30,8 @@ const Header = () => {
 
   const {filter,setFilter}=useContext(AuthContext);
 
-  // const[x,setX]=useState("");
-  // console.log(user.name)
-
-  // const verifyUser=()=>{
-  //   fetch(`https://healthandfitness.onrender.com/data`).then((res)=>{
-  //     return res.json();
-  //   }).then((data)=>{
-  //     let filteredData=data.filter((el)=>el.user==user.name);
-  //     console.log(filteredData);
-  //     setFilter(filteredData);
-  //     if(filteredData.length<1){
-  //       let obj={
-  //         "user": user.name,
-  //         "userdata": []
-  //       }
-  //       fetch(`https://healthandfitness.onrender.com/data`,{
-  //         method:"POST",
-  //         headers:{
-  //           "Content-Type":"application/json",
-  //         },
-  //         body:JSON.stringify(obj) 
-  //       })
-  //     }
-
-  //   })
-  // }
   const isUserLoggedIn=()=>{
+  // console.log("Rohan2",isAuthenticated);
     if(isAuthenticated){
       console.log("user is Authenticated verifying user");
       verifyUser();
@@ -70,12 +45,13 @@ const Header = () => {
     fetch(`https://healthandfitness.onrender.com/data`).then((res)=>{
       return res.json();
     }).then((data)=>{
-      console.log(user);
+      // console.log(user);
       let filteredData=data.filter((el)=>el.user==user.name);
-      console.log(filteredData);
+      // console.log(filteredData);
       setFilter(filteredData);
       if(filteredData.length<1){
         let obj={
+          "id": Math.floor(Math.random() * 100),
           "user": user.name,
           "userdata": []
         }
@@ -86,6 +62,7 @@ const Header = () => {
           },
           body:JSON.stringify(obj) 
         })
+        setFilter([obj]);
       }
     })
   }

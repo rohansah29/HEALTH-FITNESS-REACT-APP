@@ -43,7 +43,15 @@ const Track = () => {
   };
 
   useEffect(() => {
-    getFitnessData();
+    // getFitnessData();
+    // console.log(filter,"Rohan");
+    filter && filter[0] && filter[0].id && fetch(`https://healthandfitness.onrender.com/data/${filter[0].id}`, {
+          method: "PATCH",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ userdata: fitData }),
+        });
   }, [fitData, filter]);
 
   const handleSubmit = (e) => {
@@ -62,41 +70,18 @@ const Track = () => {
       date: postdate,
     };
 
-    fetch(`https://healthandfitness.onrender.com/data/${filter[0].id}`)
-      .then((res) => res.json())
-      .then((json) => {
-        let updatedJson = [...json?.userdata, obj];
-        fetch(`https://healthandfitness.onrender.com/data/${filter[0].id}`, {
-          method: "PATCH",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({ userdata: updatedJson }),
-        });
-      });
-      Swal.fire({
-        position: "top-mid",
-        icon: "success",
-        title: "Your Data has been Added.",
-        showConfirmButton: false,
-        timer: 1500,
-      }).then(()=>{
-        setLoading(false);
-      setBtn(false);
-      setName("");
-      setActivity("");
-      setWeight("");
-      setFat("");
-      setBMI("");
-      setPostDate("");
-      })
+    setFitData([...fitData,obj]);
+    Swal.fire({
+          position: "top-mid",
+          icon: "success",
+          title: "Your Data has been Added.",
+          showConfirmButton: false,
+          timer: 1500,
+        })
+        setBtn(false);
+    
   };
 
-  // if(loading){
-  //   <h1>Loading...</h1>
-  // }
-
-  // console.log(data);
   return (
     <div className="container">
       
