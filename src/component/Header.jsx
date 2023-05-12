@@ -56,14 +56,23 @@ const Header = () => {
 
   //   })
   // }
+  const isUserLoggedIn=()=>{
+    if(isAuthenticated){
+      console.log("user is Authenticated verifying user");
+      verifyUser();
+    }else{
+      console.log("No user is logged in");
+    }
+  }
 
   const verifyUser=()=>{
     // console.log(user.name)
     fetch(`https://healthandfitness.onrender.com/data`).then((res)=>{
       return res.json();
     }).then((data)=>{
+      console.log(user);
       let filteredData=data.filter((el)=>el.user==user.name);
-      // console.log(filteredData);
+      console.log(filteredData);
       setFilter(filteredData);
       if(filteredData.length<1){
         let obj={
@@ -95,13 +104,10 @@ const Header = () => {
         return()=>window.removeEventListener("scroll",headerFunc);
     },[])
 
-    useEffect(()=>{
-      verifyUser();
-    })
 
-    // useEffect(()=>{
-    //   verifyUser();
-    // },[setFilter])
+    useEffect(()=>{
+      isUserLoggedIn();
+    },[setFilter,isAuthenticated])
 
     const handleLogOut=()=>{
       logout({ returnTo: window.location.origin })
@@ -138,7 +144,7 @@ const Header = () => {
             {isAuthenticated?<button className="register__btn" onClick={handleLogOut}>Log Out</button>:
             <button className="register__btn" onClick={handleLogIn}>Log In</button>}
             <span className="mobile__menu">
-              <i class="ri-menu-line"></i>
+              <i className="ri-menu-line"></i>
             </span>
           </div>
         </div>

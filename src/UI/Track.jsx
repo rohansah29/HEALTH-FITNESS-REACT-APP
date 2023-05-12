@@ -53,6 +53,7 @@ const Track = () => {
     // alert("It may take some time to show data on Dashboard, so please be patient.");
 
     let obj = {
+      id: Math.floor(Math.random() * 100),
       workout_name: name,
       activity: activity,
       weight: weight,
@@ -196,7 +197,7 @@ const Track = () => {
           <tbody>
             {fitData.map((el) => {
               return (
-                <tr>
+                <tr key={el.id}>
                   <td>{el.workout_name}</td>
                   <td>{el.activity}</td>
                   <td>{el.weight} Kg</td>

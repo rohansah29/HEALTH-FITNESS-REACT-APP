@@ -12,7 +12,7 @@ const Hero = () => {
 
                 <div className="hero__btns" data-aos-duration="1200" data-aos="fade-up" data-aos-delay="200">
                     <button className='register__btn'>Get Started</button>
-                    <button className='watch_btn'><span><i class="ri-play-fill"></i></span>Watch Video</button>
+                    <button className='watch_btn'><span><i className="ri-play-fill"></i></span>Watch Video</button>
                 </div>
             </div>
 
@@ -30,12 +30,12 @@ const Hero = () => {
 
                     <div className="heart__rate" data-aos-duration="1100" data-aos="fade-right">
                         <h5>Heart Rate</h5>
-                        <span><i class="ri-heart-pulse-fill"></i></span>
+                        <span><i className="ri-heart-pulse-fill"></i></span>
                         <h6>100 BPM</h6>
                     </div>
 
                     <div className="gym__location" data-aos-duration="1100" data-aos="fade-up">
-                        <span><i class="ri-map-pin-2-fill"></i></span>
+                        <span><i className="ri-map-pin-2-fill"></i></span>
                         <h5>Find our gym centers near you</h5>
                     </div>
                 </div>
