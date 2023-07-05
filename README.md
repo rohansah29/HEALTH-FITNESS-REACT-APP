@@ -17,7 +17,8 @@ Version 2 Progress: 50%
 
 
 ## Landing Page
-![Home_page](https://raw.githubusercontent.com/rohansah29/polite-sheep-7319/main/src/assets/img/Home_page.png)
+![health fitness](https://github.com/rohansah29/polite-sheep-7319/assets/119648587/548ca961-afd8-44c4-910a-5d0c73896b1b)
+
 ## Track your fitness page
 ![TrackDataPage](https://raw.githubusercontent.com/rohansah29/polite-sheep-7319/main/src/assets/img/TrackDataPage.png)
 
